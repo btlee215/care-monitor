@@ -1,0 +1,206 @@
+subreddits:
+  tier1:
+    - sicklecell
+    - multiplemyeloma
+    - lymphoma
+    - leukemia
+    - MuscularDystrophy
+    - SpinalMuscularAtrophy
+    - Hemophilia
+    - betathalassemia
+    - myastheniagravis
+  tier2:
+    - cancer
+    - breastcancer
+    - braincancer
+    - pancreaticcancer
+    - melanoma
+    - lungcancer
+    - prostatecancer
+    - testicularcancer
+  tier3:
+    - afib
+    - PacemakerICD
+    - heartdisease
+    - HeartFailure
+    - aorticvalve
+    - POTS
+  tier4:
+    - lupus
+    - MultipleSclerosis
+    - rheumatoid
+    - Fibromyalgia
+    - AutoimmuneDisease
+    - ankylosingspondylitis
+    - Sjogrens
+    - MCAS
+  tier5:
+    - ChronicIllness
+    - ChronicPain
+    - RareDisease
+    - AskDocs
+    - HealthInsurance
+    - disability
+
+keywords:
+  priority1_cgt:
+    score: 5
+    match_any:
+      - "CAR-T"
+      - "CAR T"
+      - "CART"
+      - "CASGEVY"
+      - "LYFGENIA"
+      - "ELEVIDYS"
+      - "ZOLGENSMA"
+      - "gene therapy"
+      - "cell therapy"
+      - "gene editing"
+      - "infusion center"
+      - "apheresis"
+      - "cell collection"
+      - "authorized treatment center"
+      - "ATC"
+      - "hub program"
+      - "patient services"
+      - "specialty pharmacy"
+      - "leukapheresis"
+      - "T-cell"
+      - "stem cell transplant"
+      - "bone marrow transplant"
+    require_any:
+      - "insurance"
+      - "prior auth"
+      - "prior authorization"
+      - "denied"
+      - "waiting"
+      - "wait list"
+      - "scheduling"
+      - "referral"
+      - "next steps"
+      - "how do I"
+      - "confused"
+      - "don't know what to do"
+      - "travel"
+      - "relocat"
+      - "out of state"
+      - "approved"
+      - "approval"
+      - "qualify"
+      - "eligible"
+  priority2_routing:
+    score: 4
+    match_any:
+      - "can't get an appointment"
+      - "can't get appointment"
+      - "no appointments available"
+      - "months wait"
+      - "month wait"
+      - "year wait"
+      - "waiting list"
+      - "waitlist"
+      - "out of network"
+      - "out-of-network"
+      - "doesn't take my insurance"
+      - "doesn't accept my insurance"
+      - "wrong specialist"
+      - "referred to wrong"
+      - "no one is coordinating"
+      - "passed around"
+      - "bounced between"
+      - "nobody is helping"
+      - "no clear next step"
+      - "don't know who to see"
+      - "don't know where to go"
+      - "which specialist"
+      - "what kind of doctor"
+      - "referral processing"
+      - "referral delay"
+      - "waiting on referral"
+      - "referral denied"
+      - "can't get a referral"
+      - "can't get referral"
+      - "who should I see"
+      - "where should I go"
+      - "specialist won't see me"
+      - "nobody will see me"
+  priority3_prior_auth:
+    score: 3
+    match_any:
+      - "prior authorization"
+      - "prior auth"
+      - "pre-authorization"
+      - "preauthorization"
+      - "PA denied"
+      - "auth denied"
+      - "insurance denied"
+      - "denied coverage"
+      - "step therapy"
+      - "step edit"
+      - "fail first"
+      - "appeals process"
+      - "insurance appeal"
+      - "insurance won't cover"
+      - "insurance won't approve"
+      - "insurance requires"
+      - "waiting for approval"
+      - "waiting on approval"
+  priority4_general_navigation:
+    score: 2
+    match_any:
+      - "don't know where to start"
+      - "newly diagnosed"
+      - "just diagnosed"
+      - "overwhelmed"
+      - "no idea what to do"
+      - "primary care doesn't know"
+      - "GP doesn't know"
+      - "PCP doesn't know"
+      - "my doctor doesn't know"
+      - "who do I call"
+      - "where do I even begin"
+      - "caregiver"
+      - "caring for"
+      - "helping my"
+      - "my mom has"
+      - "my dad has"
+      - "my child has"
+      - "my son has"
+      - "my daughter has"
+      - "navigating for"
+
+exclusions:
+  skip_if_match:
+    - "billing error"
+    - "bill error"
+    - "overcharged"
+    - "overcharge"
+    - "surprise bill"
+    - "medical debt"
+    - "collections"
+    - "copay coupon"
+    - "GoodRx"
+    - "manufacturer coupon"
+    - "drug cost"
+    - "medication cost"
+    - "how much does .* cost"
+    - "Ozempic"
+    - "Wegovy"
+    - "Mounjaro"
+    - "tirzepatide"
+    - "semaglutide"
+    - "GLP-1"
+    - "weight loss medication"
+  override_exclusion_if:
+    - "out of network"
+    - "out-of-network"
+    - "referred to wrong"
+    - "coordination failure"
+
+settings:
+  lookback_hours: 4
+  min_score: 2
+  posts_per_subreddit: 100
+  silence_alert_days: 7
+  output_mode: "both"
+  db_path: "data/monitor.db"
